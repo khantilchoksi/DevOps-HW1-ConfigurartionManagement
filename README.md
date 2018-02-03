@@ -31,7 +31,7 @@
       4. The  `mvn test` command is run to test the application using Selenium.     
       5. This all tasks together, runs the selenium tests successfully `Tests run: 3, Failures: 0, Errors: 0, Skipped: 0`. 
 
-#### Screencast: (https://youtu.be/OdsuAEUhH8g) demonstrating ansible scripts for automatic configuration of Coffemaker Java Spring Application and passing the selenium test cases.
+#### [Screencast](https://youtu.be/OdsuAEUhH8g) demonstrating ansible scripts for automatic configuration of Coffemaker Java Spring Application and passing the selenium test cases.
 
 #### **Quick Links:**   
   * [Ansible Script for CoffeeMaker](/ansible/app.yml)
