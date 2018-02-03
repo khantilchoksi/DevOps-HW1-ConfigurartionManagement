@@ -11,7 +11,7 @@
 
 ## Onboarding Coffee Maker VM Configuration / Ansible Script:    
    * Here is the  [YAML file](/ansible/app.yml) for configuration management of CoffeeMaker.     
-   * Here is my [Vagrant file](/Onboard/Vagrantfile) for Onboarding VM. 
+   * Here is my [Vagrant file](/onboard/Vagrantfile) for Onboarding VM. 
    * The following steps are to be done in order to perform the automating configuration of this Java Spring Application:  
       1. Installed the [Java8](/ansible/roles/java), [Maven](/ansible/roles/maven), [Git](/ansible/roles/git) from their corresponding ansible roles.
       2.  Now, to clone the github repo, I have created RSA key pairs (public and private) on the Onboarding VM and registered the key on github.ncsu.com. So, using the `git + ssh`, it will allow the ansible script to clone the repo using the RSA private key.
