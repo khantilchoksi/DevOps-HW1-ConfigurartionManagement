@@ -1,0 +1,5 @@
+---
+#Git Related Tasks
+- name: Install Git
+  apt: pkg=git state=present update_cache=yes cache_valid_time=20000
+  become: yes

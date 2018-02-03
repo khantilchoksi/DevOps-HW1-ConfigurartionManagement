@@ -1,0 +1,48 @@
+---
+# Selenium Specific tasks
+
+
+
+- name: Cloning repo
+  git:
+    repo: https://github.com/CSC-326/Onboarding-Selenium.git
+    dest: "{{homeDir}}/{{appDir}}"
+    accept_hostkey: yes
+    force: yes
+
+# - name: Echo Server IP
+#   shell: echo $SPRING_SERVER
+#   register: echoout
+
+- name: Change ROOT localhost variable with System Variable
+  lineinfile: 
+    backup: yes
+    state: present
+    path: "{{ homeDir }}/{{ appDir }}/src/src/test/java/selenium/tests/WebTest.java"
+    regexp: '^    private final String     ROOT = "http://localhost:8080/";'
+    line: '    private final String     ROOT = "http://"+System.getenv("SPRING_SERVER")+":8080/";'
+    backrefs: yes
+
+- name: Adding Chrome Driver Options to add no-sandbox
+  lineinfile:
+    path: "{{ homeDir }}/{{ appDir }}/src/src/test/java/selenium/tests/WebTest.java"
+    line: 'options.addArguments( "no-sandbox");'
+    insertafter: options.addArguments.*
+  become: yes
+
+- name: Install a .deb package for Chrome Driver headless
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb      
+
+- name: Run Selenium Test 
+  shell: "cd {{ homeDir }}/{{appDir}}/src && mvn test"
+  become: yes
+  register: testout
+
+     # emit a debug message with each package and selenium test cases ran
+- debug:
+  msg: "{{ item }}"
+  with_items: 
+    - "{{packages}}"
+    - "{{ testout.stderr_lines }}"
+    - "{{ testout.stdout_lines }}"

@@ -1,0 +1,7 @@
+---
+# Selenium Server Related Varibles
+homeDir: /home/vagrant
+appDir: OnboardSeleniumTest
+packages:
+  - git-core
+  - oracle-java8-installer

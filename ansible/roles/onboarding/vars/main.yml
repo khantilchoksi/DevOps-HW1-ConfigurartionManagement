@@ -1,0 +1,7 @@
+---
+#Onboarding variables
+homeDir: /home/vagrant
+appDir: Onboarding
+packages:
+  - git-core
+  - oracle-java8-installer

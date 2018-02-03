@@ -1,0 +1,25 @@
+---
+#Onboarding spring app specific tasks
+- name: Cloning repo
+  git:
+   repo: ssh://git@github.ncsu.edu/engr-csc326-staff/Onboarding.git
+   key_file: "{{homeDir}}/.ssh/id_rsa"
+   dest: /home/vagrant/Onboarding
+   accept_hostkey: yes
+
+- template: 
+   src: "{{homeDir}}/synced_folder/roles/onboarding/templates/hibernate-template.cfg.xml"
+   dest: "{{homeDir}}/Onboarding/CoffeeMaker/src/main/resources/hibernate.cfg.xml"
+   mode: 0644
+
+- name: Run Spring server as background process using nohup
+  shell: "cd /home/vagrant/Onboarding/CoffeeMaker && nohup mvn spring-boot:run &"
+  become: yes
+  register: out
+
+- debug:
+  msg: "{{ item }}"
+  with_items: 
+    - "{{packages}}"
+    - "{{ out.stderr_lines }}"
+    - "{{ out.stdout_lines }}"

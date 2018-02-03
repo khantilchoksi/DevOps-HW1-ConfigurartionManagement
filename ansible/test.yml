@@ -1,0 +1,117 @@
+---
+- hosts: testapphost
+  sudo: yes
+    
+  environment:
+    SPRING_SERVER: 192.168.8.10
+
+  roles:
+   - java
+   - maven
+   - maven3
+   - git
+   - selenium
+  # vars:
+  #   - homeDir: /home/vagrant
+  #   - appDir: OnboardSelenium
+  #   - springIP: 192.168.8.10
+  #   - maven_home_parent_directory: /opt
+  #   - maven_download_url: http://www.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+  #   - maven_major: 3
+  #   - maven_version: 3.5.2
+  #   - packages:
+  #     - git-core
+  #     - oracle-java8-installer
+
+
+
+  # tasks:
+  #  - name: Setting Environment Variable
+  #    shell: export SPRING_APP_IP={{ springIP }}
+  #    become: yes
+
+  #  - name: Environment Variable Value
+  #    shell: "echo $SPRING_APP"
+  #    become: yes
+
+  #  - name: Creating new directory
+  #    file: path=/home/vagrant/OnboardSelenium state=directory
+
+  #  - name: Creating new directory
+  #    file: path=/home/vagrant/tmp state=directory
+
+  #  - name: Creating new directory
+  #    file: path=/home/vagrant/opt state=directory
+
+  #  - name: Install git
+  #    apt: pkg=git state=present cache_valid_time=20000
+  #    become: yes
+
+  #  #- name: install maven (and other packages if needed)
+  #  #  become: yes
+  #   # apt: pkg=maven state=latest update_cache=yes cache_valid_time=3600
+
+  # # tasks file for apache-maven
+  #  - name: Add Maven3 Repository
+  #    apt_repository: repo='ppa:andrei-pozolotin/maven3'
+
+   # - name: update apt
+   #   shell: apt-get update
+   #   sudo: yes
+
+   # - name: Install Maven3
+   #   apt: pkg=maven3 state=latest update_cache=yes cache_valid_time=3600
+
+
+
+   #- name: Install Oracle Java 8
+    # become: yes
+     #apt: name={{item}} state=latest
+     #with_items:
+      #- oracle-java8-installer
+      #- ca-certificates
+      #- oracle-java8-set-default
+
+   # - name: Install java 8 preresequesits
+   #   apt: name=python-software-properties
+
+   # - name: Add Java 8 repository
+   #   apt_repository: repo='ppa:webupd8team/java'
+
+   # - name: Agree to oracle license
+   #   debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+
+   # - name: install java 8
+   #   apt: name=oracle-java8-installer state=latest update-cache=yes force=yes
+
+ 
+   # - name: Adding driver argument
+   #   lineinfile: 
+   #     path: /home/vagrant/OnboardSeleniumTest/src/src/test/java/selenium/tests/WebTest.java
+   #     state: present
+   #     regexp: '^        final ChromeOptions options = new ChromeOptions();'
+   #     backrefs: yes
+   #     line: 'options.addArguments( "headless" );   options.addArguments( "no-sandbox" );'
+   #   become: true  
+
+   # - name: Adding driver argument
+   #   lineinfile: 
+   #     backup=yes
+   #     state=present
+   #     dest=/home/vagrant/OnboardSeleniumTest/src/src/test/java/selenium/tests/WebTest.java
+   #     regexp='^  options.addArguments( "headless" );'
+   #     backrefs=yes
+   #     line=' options.addArguments( "headless" );   options.addArguments( "no-sandbox" );'
+
+
+
+
+
+   # - debug:
+   #     msg: "{{ item }}"
+   #   with_items: 
+   #     - "{{packages}}"
+   #     - "{{ out.stdout }}"
+
+
+     

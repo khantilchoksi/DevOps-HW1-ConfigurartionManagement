@@ -1,0 +1,20 @@
+---
+- hosts: springapphost
+  sudo: yes
+  
+  vars_prompt:
+  - name: "mysql_password"
+    prompt: Type your password for mysql server
+    private: yes
+    
+  roles:
+   - java
+   - maven
+   - mysql
+   - git
+   - onboarding
+
+
+
+
+     

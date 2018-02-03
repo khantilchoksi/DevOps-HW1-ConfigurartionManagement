@@ -1,0 +1,11 @@
+---
+  # tasks file for apache-maven3
+- name: Add Maven3 Repository
+  apt_repository: repo='ppa:andrei-pozolotin/maven3'
+
+- name: Update apt to install latest version of maven 3
+  shell: apt-get update
+  sudo: yes
+
+- name: Install Maven3 latest version
+  apt: pkg=maven3 state=latest update_cache=yes cache_valid_time=3600
